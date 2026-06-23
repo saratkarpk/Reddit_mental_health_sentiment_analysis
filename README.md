@@ -18,16 +18,18 @@ The goal is to translate unstructured, highly nuanced social media text into act
 ---
 
 ## 🚀 System Architecture & Workflow
+```text
 [Raw Reddit Text] ➔ [Data Preprocessing & Truncation]
-│
-┌───────────────┴───────────────┐
-▼                               ▼
-[VADER Lexicon]               [DistilRoBERTa Transformer]
-(Continuous Score -1 to +1)    (Multi-Class Emotion Label)
-│                               │
-└───────────────┬───────────────┘
-▼
-[Cross-Model Validation & Viz]
+                         │
+         ┌───────────────┴───────────────┐
+         ▼                               ▼
+ [VADER Lexicon]               [DistilRoBERTa Transformer]
+ (Continuous Score -1 to +1)    (Multi-Class Emotion Label)
+         │                               │
+         └───────────────┬───────────────┘
+                         ▼
+        [Cross-Model Validation & Viz]
+```
 
 1. **Data Ingestion & Cleaning:** Extracted raw text data from targeted subreddits, removing structural noise, duplicates, and stripping URLs while retaining emotional punctuation cues (e.g., exclamation marks, capitalizations).
 2. **Rule-Based Sentiment Profiling:** Applied VADER to compute a continuous compound score, capturing immediate textual intensity and micro-slangs common on social platforms.
